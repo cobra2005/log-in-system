@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div id="header" class="flexbox">
+        <div class="flexbox">
+            <button class="new-chat flexbox">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <div class="flexbox" style="flex-direction: column">
+
+                <button class="model-selection-tool flexbox" onclick="toggleBlock()">ChatGPT 4o mini
+                    <div class="chevron-down flexbox">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </button>
+                <div id="toggleBlock" class="toggle-container">
+                    <p>Đăng nhập để dùng thử các tính năng nâng cao</p>
+                    <p>Nhận phản hồi thông minh hơn, tải tệp lên, phân tích hình ảnh và nhiều tình năng khác khi đăng nhập.</p>
+                    <button class="btn sign-in" style="opacity: 1;">Đăng nhập</button>
+                    <button class="btn sign-up" style="opacity: 1;">Đăng ký</button>
+                </div>
+            </div>
+        </div>
+        <div class="item-flexbox">
+            <button class="btn sign-in">Đăng nhập</button>
+            <button class="btn sign-up">Đăng ký</button>
+        </div>
+    </div>
+    <div id="dialog" class="flexbox">
+        <p class="welcome text-center">Chào mừng trở lại</p>
+        <p class="description text-center">Đăng nhập hoặc đăng ký để nhận phản hồi thông minh hơn, tải lên tệp cũng như hình ảnh và nhiều lợi ích khác.</p>
+        <button class="btn sign-in">Đăng nhập</button>
+        <button class="btn sign-up">Đăng ký</button>
+        <p class="continue-log-out">Tiếp tục trạng thái đăng xuất</p>
+    </div>
+    
+    <script>
+        document.getElementById('dialog').querySelector('.continue-log-out').onclick = function() {
+            document.getElementById('dialog').style.display = 'none';
+            document.querySelector('body').style.backgroundColor = 'rgb(33,33,33)';
+            document.querySelector('#header .item-flexbox .sign-up').style.opacity = '1';
+            document.querySelector('#header .item-flexbox .sign-in').style.opacity = '1';
+            document.querySelector('#header .item-flexbox .sign-up').style.backgroundColor = '#212121';
+        }
+
+        function toggleBlock() {
+            const block = document.getElementById('toggleBlock');
+            if (block.style.display === 'none' || block.style.display === '') {
+                block.style.display = 'block'; // Hiển thị khối
+            } else {
+                block.style.display = 'none'; // Ẩn khối
+            }
+        }
+
+        const signInBtns = document.querySelectorAll('.sign-in');
+        Array.from(signInBtns).forEach(signInBtn => {
+            signInBtn.onclick = function() {
+                window.location.href = 'http://localhost:3000/sign-in'
+            }
+        });
+        const signUpBtns = document.querySelectorAll('.sign-up');
+        Array.from(signUpBtns).forEach(signUpBtn => {
+            signUpBtn.onclick = function() {
+                window.location.href = 'http://localhost:3000/sign-up'
+            }
+        });
+    </script>
+</body>
+</html>
